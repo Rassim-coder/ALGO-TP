@@ -502,3 +502,437 @@ body {
 @keyframes fade-in-content {
     to { opacity: 1; }
 }
+
+/* === TP1 Custom Layout === */
+.tp1-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    margin-top: 28px;
+}
+.tp1-left {
+    flex: 0 0 30%;
+    max-width: 320px;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+}
+.tp1-panel {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 16px 0 rgba(30,30,60,0.06);
+    padding: 32px 24px 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    border: 1.5px solid #e0e6ed;
+}
+
+/* Radio button styles */
+.radio-group {
+    margin: 16px 0;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.radio-title {
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+    cursor: pointer;
+    position: relative;
+    padding-left: 30px;
+    user-select: none;
+}
+
+.radio-label input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.radio-custom {
+    position: absolute;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #f5f7fa;
+    border: 2px solid #e0e6ed;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.radio-label:hover input ~ .radio-custom {
+    background-color: #e8f0fe;
+    border-color: #a3bffa;
+}
+
+.radio-label input:checked ~ .radio-custom {
+    background-color: #2196f3;
+    border-color: #2196f3;
+}
+
+.radio-custom:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.radio-label input:checked ~ .radio-custom:after {
+    display: block;
+}
+
+.radio-label .radio-custom:after {
+    top: 4px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+/* Form group styling */
+.form-group {
+    margin: 16px 0 8px 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #1a1a2e;
+    font-size: 0.95rem;
+}
+
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1.5px solid #e0e6ed;
+    font-size: 1rem;
+    background: #f5f7fa;
+    color: #1a1a2e;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.form-group input[type="number"]:focus {
+    border-color: #2196f3;
+}
+
+/* Adjust spacing for form elements */
+#tree-options, #graph-options {
+    margin-top: 8px;
+}
+.tp1-panel label {
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 6px;
+}
+.tp1-panel select, .tp1-panel input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1.5px solid #e0e6ed;
+    font-size: 1rem;
+    background: #f5f7fa;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+    outline: none;
+    transition: border 0.2s;
+}
+.tp1-panel select:focus, .tp1-panel input:focus {
+    border-color: #2196f3;
+}
+.tp1-btn {
+    margin-top: 8px;
+    padding: 12px 0;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(90deg, #2196f3 60%, #21cbf3 100%);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px 0 rgba(33,150,243,0.08);
+    transition: background 0.2s, transform 0.1s;
+}
+.tp1-btn.tp1-reset {
+    background: linear-gradient(90deg, #ff6b6b 60%, #fcb69f 100%);
+    margin-top: 0;
+}
+.tp1-btn:hover {
+    background: linear-gradient(90deg, #1769aa 60%, #21cbf3 100%);
+    transform: scale(1.03);
+}
+.tp1-btn.tp1-reset:hover {
+    background: linear-gradient(90deg, #d32f2f 60%, #fcb69f 100%);
+}
+.tp1-right {
+    flex: 1 1 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.tp1-canvas-area {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+.tp1-canvas {
+    width: 100%;
+    min-height: 400px;
+    background: #f9fafb;
+    border: 2px solid #e0e6ed;
+    border-radius: 16px;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #b7c5e9;
+}
+.tp1-properties {
+    display: flex;
+    flex-direction: row;
+    gap: 28px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px 0 rgba(30,30,60,0.06);
+    padding: 18px 28px;
+    font-size: 1.07rem;
+    color: #1a1a2e;
+    border: 1.5px solid #e0e6ed;
+    margin-top: 10px;
+    width: fit-content;
+}
+.tp1-prop-value {
+    font-weight: 700;
+    color: #2196f3;
+    margin-left: 6px;
+}
+.tp1-title {
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px #e0e6ed44;
+}
+
+/* === TP2 Custom Layout === */
+.tp2-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    margin-top: 28px;
+}
+.tp2-left {
+    flex: 0 0 30%;
+    max-width: 320px;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+}
+.tp2-panel {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 16px 0 rgba(30,30,60,0.06);
+    padding: 32px 24px 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    border: 1.5px solid #e0e6ed;
+}
+
+.tp2-panel label {
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 6px;
+}
+
+.tp2-panel select, 
+.tp2-panel input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1.5px solid #e0e6ed;
+    font-size: 1rem;
+    background: #f5f7fa;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+    outline: none;
+    transition: border 0.2s;
+    width: 100%;
+}
+
+.tp2-panel select:focus, 
+.tp2-panel input:focus {
+    border-color: #2196f3;
+}
+
+.tp2-btn {
+    margin-top: 8px;
+    padding: 12px 0;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(90deg, #2196f3 60%, #21cbf3 100%);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px 0 rgba(33,150,243,0.08);
+    transition: background 0.2s, transform 0.1s;
+    width: 100%;
+}
+
+.tp2-btn.tp2-reset {
+    background: linear-gradient(90deg, #ff6b6b 60%, #fcb69f 100%);
+    margin-top: 0;
+}
+
+.tp2-btn:hover {
+    background: linear-gradient(90deg, #1769aa 60%, #21cbf3 100%);
+    transform: scale(1.03);
+}
+
+.tp2-btn.tp2-reset:hover {
+    background: linear-gradient(90deg, #d32f2f 60%, #fcb69f 100%);
+}
+
+.tp2-right {
+    flex: 1 1 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.tp2-canvas-area {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.tp2-canvas {
+    width: 100%;
+    min-height: 400px;
+    background: #f9fafb;
+    border: 2px solid #e0e6ed;
+    border-radius: 16px;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #b7c5e9;
+}
+
+.tp2-properties {
+    display: flex;
+    flex-direction: row;
+    gap: 28px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px 0 rgba(30,30,60,0.06);
+    padding: 18px 28px;
+    font-size: 1.07rem;
+    color: #1a1a2e;
+    border: 1.5px solid #e0e6ed;
+    margin-top: 10px;
+    width: fit-content;
+}
+
+.tp2-prop-value {
+    font-weight: 700;
+    color: #2196f3;
+    margin-left: 6px;
+}
+
+.tp2-title {
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px #e0e6ed44;
+}
+
+/* Search and Delete sections */
+#tp2-search-section,
+#tp2-delete-section {
+    display: none;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eaeef2;
+}
+
+#tp2-search-section h3,
+#tp2-delete-section h3 {
+    font-size: 1.1rem;
+    color: #1a1a2e;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+#tp2-search-input,
+#tp2-delete-input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1.5px solid #e0e6ed;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #f5f7fa;
+    color: #1a1a2e;
+    outline: none;
+    transition: border 0.2s;
+}
+
+#tp2-search-input:focus,
+#tp2-delete-input:focus {
+    border-color: #2196f3;
+}
+
+#tp2-search-btn,
+#tp2-delete-btn {
+    width: auto;
+    padding: 10px 20px;
+    margin-top: 0;
+}
+
+#tp2-status {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+    display: none;
+}
+
+#tp2-status.success {
+    background-color: #e6f7ee;
+    color: #10b981;
+    border: 1px solid #a7f3d0;
+    display: block;
+}
+
+#tp2-status.error {
+    background-color: #fee2e2;
+    color: #ef4444;
+    border: 1px solid #fecaca;
+    display: block;
+}
+
+#tp2-status.info {
+    background-color: #dbeafe;
+    color: #3b82f6;
+    border: 1px solid #bfdbfe;
+    display: block;
+}

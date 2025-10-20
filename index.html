@@ -6,6 +6,11 @@
     <title>Algo TP</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+<!-- Vis.js library -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js"></script>
+
+
 </head>
 <body>
     <aside class="sidebar">
@@ -57,6 +62,7 @@
                         <li><span class="team-icon">&bull;</span> Tessouh Mohamed - G2</li>
                         <li><span class="team-icon">&bull;</span> Zeroual Abdeldjallil - G2</li>
                         <li><span class="team-icon">&bull;</span> Hider Abdelaziz - G1</li>
+                        <li><span class="team-icon">&bull;</span> Aouali Rabah - G1</li>
                     </ul>
                 </div>
                 <div class="landing-bottom">
@@ -65,13 +71,151 @@
             </div>
         </div>
         <div id="tp1-content" class="tp-content">
-            <h1>Welcome to TP1</h1>
-            <p>This is the main content area for TP1.</p>
+            <h1 class="tp1-title">TP1 – Arbres et Graphes Interactifs</h1>
+            <div class="tp1-layout">
+                <div class="tp1-left">
+                    <div class="tp1-panel">
+                        <label for="tp1-structure">Structure :</label>
+                        <select id="tp1-structure">
+                            <option value="ABR">ABR (Arbre Binaire de Recherche)</option>
+                            <option value="AVL">AVL</option>
+                            <option value="Tas">Tas (Heap)</option>
+                            <option value="Graphe">Graphe</option>
+                        </select>
+                        
+                        <!-- Node Value Input (for trees) -->
+                        <div id="tree-options">
+                            <!-- ABR and AVL share the same input field -->
+                            <div id="abr-options" class="tree-option">
+                                <label for="abr-values">Valeurs (séparées par virgules) :</label>
+                                <input type="text" id="abr-values" placeholder="Ex: 50, 30, 70, 20, 40, 60, 80" />
+                            </div>
+                            <div id="avl-options" class="tree-option" style="display: none;">
+                                <label for="avl-values">Valeurs (séparées par virgules) :</label>
+                                <input type="text" id="avl-values" placeholder="Ex: 50, 30, 70, 20, 40, 60, 80" />
+                            </div>
+                            <div id="other-tree-options" class="tree-option" style="display: none;">
+                                <label for="tp1-node">Valeur du nœud :</label>
+                                <input type="text" id="tp1-node" placeholder="Entrer une valeur" />
+                            </div>
+                        </div>
+                        
+                        <!-- Graph Options (initially hidden) -->
+                        <div id="graph-options" style="display: none;">
+                            <div class="radio-group">
+                                <div class="radio-title">Type de graphe :</div>
+                                <label class="radio-label">
+                                    <input type="radio" name="graph-type" value="non-oriente" checked>
+                                    <span class="radio-custom"></span>
+                                    Non-orienté
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="graph-type" value="oriente">
+                                    <span class="radio-custom"></span>
+                                    Orienté
+                                </label>
+                            </div>
+                            
+                            <div class="radio-group">
+                                <div class="radio-title">Poids :</div>
+                                <label class="radio-label">
+                                    <input type="radio" name="graph-weight" value="non-pondere" checked>
+                                    <span class="radio-custom"></span>
+                                    Non-pondéré
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="graph-weight" value="pondere">
+                                    <span class="radio-custom"></span>
+                                    Pondéré
+                                </label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="node-count">Nombre de nœuds :</label>
+                                <input type="number" id="node-count" min="2" max="15">
+                            </div>
+                        </div>
+                        
+                        <button id="action-btn" class="tp1-btn">Ajouter Noeud</button>
+                        <button class="tp1-btn tp1-reset">Réinitialiser</button>
+                    </div>
+                </div>
+                <div class="tp1-right">
+                    <div class="tp1-canvas-area">
+                        <div id="treeNetwork" class="tp1-canvas" style="width: 100%; height: 600px; border: 2px solid #e0e6ed; border-radius: 16px; background: #f9fafb;"></div>
+                        <div class="tp1-properties">
+                            <div>Hauteur: <span id="hauteur" class="tp1-prop-value">0</span></div>
+                            <div>Degré: <span id="degre" class="tp1-prop-value">0</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="tp2-content" class="tp-content">
-            <div class="coming-soon">
-                <h2>TP2</h2>
-                <p>Coming Soon</p>
+            <h1 class="tp2-title">TP2 – Recherche et Suppression dans les Arbres</h1>
+            <div class="tp2-layout">
+                <div class="tp2-left">
+                    <div class="tp2-panel">
+                        <label for="tp2-structure">Structure :</label>
+                        <select id="tp2-structure">
+                            <option value="ABR">ABR (Arbre Binaire de Recherche)</option>
+                            <option value="AVL">AVL</option>
+                        </select>
+                        
+                        <div class="tp2-options">
+                            <div id="tp2-tree-options">
+                                <div class="tp2-option">
+                                    <label for="tp2-values">Valeurs (séparées par des virgules) :</label>
+                                    <input type="text" id="tp2-values" placeholder="Ex: 50, 30, 70, 20, 40, 60, 80" />
+                                </div>
+                                <div id="tp2-single-node-options" class="tree-option" style="display: none;">
+                                    <label for="tp2-node">Valeur du nœud :</label>
+                                    <input type="text" id="tp2-node" placeholder="Entrer une valeur" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button id="tp2-action-btn" class="tp2-btn">Construire</button>
+                        <button id="tp2-reset-btn" class="tp2-btn tp2-reset">Réinitialiser</button>
+                        
+                        <!-- New Search Section -->
+                        <div id="tp2-search-section" style="margin-top: 20px; display: none;">
+                            <h3>Recherche</h3>
+                            <div class="tp2-option">
+                                <label for="tp2-search-input">Rechercher une valeur :</label>
+                                <div style="display: flex; gap: 10px;">
+                                    <input type="number" id="tp2-search-input" placeholder="Entrer une valeur" class="tp2-input" />
+                                    <button id="tp2-search-btn" class="tp2-btn" style="background-color: #3b82f6;">Rechercher</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- New Delete Section -->
+                        <div id="tp2-delete-section" style="margin-top: 20px; display: none;">
+                            <h3>Suppression</h3>
+                            <div class="tp2-option">
+                                <label for="tp2-delete-input">Supprimer une valeur :</label>
+                                <div style="display: flex; gap: 10px;">
+                                    <input type="number" id="tp2-delete-input" placeholder="Entrer une valeur" class="tp2-input" />
+                                    <button id="tp2-delete-btn" class="tp2-btn" style="background-color: #ef4444;">Supprimer</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Status Message -->
+                        <div id="tp2-status" style="margin-top: 15px; min-height: 20px; color: #3b82f6; font-weight: 500;"></div>
+                    </div>
+                </div>
+                <div class="tp2-right">
+                    <div class="tp2-canvas-area">
+                        <div id="tp2-treeNetwork" class="tp2-canvas" style="width: 100%; height: 600px; border: 2px solid #e0e6ed; border-radius: 16px; background: #f9fafb;"></div>
+                        <div class="tp2-properties">
+                            <div>Type: <span id="tp2-type" class="tp2-prop-value">-</span></div>
+                            <div>Hauteur: <span id="tp2-hauteur" class="tp2-prop-value">0</span></div>
+                            <div>Degré: <span id="tp2-degree" class="tp2-prop-value">0</span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="tp3-content" class="tp-content">
